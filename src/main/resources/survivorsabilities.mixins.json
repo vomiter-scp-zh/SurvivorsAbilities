@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.vomiter.survivorsabilities.mixin",
+  "plugin": "com.vomiter.survivorsabilities.mixin.SAMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "appetite.Item_AlwaysEdible",

@@ -5,7 +5,6 @@ import com.vomiter.survivorsabilities.core.SAAttributes;
 import net.dries007.tfc.common.player.PlayerInfo;
 import net.dries007.tfc.config.TFCConfig;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodData;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,15 +26,23 @@ public abstract class TFCFoodData_Mixin {
 
     @ModifyConstant(method = "addExhaustion", constant = @Constant(floatValue = 0.4f))
     private float tolerateExhaustion(float value, @Local(argsOnly = true) float toAdd){
-        if(toAdd > 0){
-            var sourcePlayer = player;
+        if (toAdd <= 0) return value;
 
-            if(getFoodLevel() >= 4 && getThirst() > 20 && sourcePlayer.isHurt()){
-                float toleranceLvl = (float) Objects.requireNonNull(sourcePlayer.getAttribute(SAAttributes.HUNGER_TOLERANCE)).getValue();
-                return Math.max(value * (1 - toleranceLvl/10), 0);
-            }
+        boolean shouldAllowExhaustion =
+                player.isHurt()
+                        && getFoodLevel() >= 4
+                        && getThirst() > 20;
+
+        if (shouldAllowExhaustion) {
+            return value;
         }
-        return value;
+
+        float toleranceLvl = (float) Objects.requireNonNull(
+                player.getAttribute(SAAttributes.HUNGER_TOLERANCE)
+        ).getValue();
+
+        float factor = 1f - (toleranceLvl / 10f);   // tolerance=10 -> factor=0
+        return Math.max(value * factor, 0f);
     }
 
     @Inject(method = "tick", at = @At(value = "TAIL"))
