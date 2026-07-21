@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
-    @WrapMethod(method = "interactLivingEntity", remap = false)
+    @WrapMethod(method = "interactLivingEntity")
     private InteractionResult sa$interactEntity(ItemStack stack, Player playerIn, LivingEntity entity, InteractionHand hand, Operation<InteractionResult> original){
         try {
             SAThreadLocals.cachedPlayer.set(playerIn);
