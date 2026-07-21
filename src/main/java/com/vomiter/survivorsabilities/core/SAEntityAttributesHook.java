@@ -21,5 +21,8 @@ public final class SAEntityAttributesHook {
         event.add(EntityType.PLAYER, SAAttributes.HUNGER_TOLERANCE.get());
         event.add(EntityType.PLAYER, SAAttributes.RESILIENCE.get());
         event.add(EntityType.PLAYER, SAAttributes.APPETITE.get());
+        event.add(EntityType.PLAYER, SAAttributes.TFC_FORTUNE.get());
+        event.add(EntityType.PLAYER, SAAttributes.BLOOD_SCENT.get());
+        event.add(EntityType.PLAYER, SAAttributes.ANIMAL_TRUST.get());
     }
 }

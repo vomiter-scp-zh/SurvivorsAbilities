@@ -5,6 +5,7 @@ import com.vomiter.survivorsabilities.client.ClientEventHandler;
 import com.vomiter.survivorsabilities.core.ForgeEventHandler;
 import com.vomiter.survivorsabilities.core.SAAttributes;
 import com.vomiter.survivorsabilities.core.SAEffects;
+import com.vomiter.survivorsabilities.core.world.ChunkCapabilityEvents;
 import com.vomiter.survivorsabilities.data.SAEntityTypeTags;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -44,6 +45,7 @@ public class SurvivorsAbilities
         SAEffects.EFFECTS.register(modBus);
 
         modBus.addListener(SAEntityTypeTags::onGatherData);
+        modBus.addListener(ChunkCapabilityEvents::registerCapabilities);
         ForgeEventHandler.init();
 
         if (FMLEnvironment.dist == Dist.CLIENT){

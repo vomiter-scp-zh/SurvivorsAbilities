@@ -1,11 +1,9 @@
 package com.vomiter.survivorsabilities.core;
 
 import com.vomiter.survivorsabilities.SurvivorsAbilities;
-import com.vomiter.survivorsabilities.core.effect.AppetiteEffect;
-import com.vomiter.survivorsabilities.core.effect.OvereatenEffect;
-import com.vomiter.survivorsabilities.core.effect.SenseEffect;
-import com.vomiter.survivorsabilities.core.effect.WorkHorseEffect;
+import com.vomiter.survivorsabilities.core.effect.*;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -20,6 +18,7 @@ public class SAEffects {
     public static final RegistryObject<MobEffect> OVEREATEN = EFFECTS.register("overeaten", OvereatenEffect::new);
     public static final RegistryObject<MobEffect> APPETITE = EFFECTS.register("appetite", AppetiteEffect::new);
     public static final Map<SenseEffect.SenseType, RegistryObject<MobEffect>> SENSES = new EnumMap<>(SenseEffect.SenseType.class);
+    public static final RegistryObject<MobEffect> AGITATION = EFFECTS.register("agitation", () -> new GenericEffect(MobEffectCategory.NEUTRAL, 0));
     static {
         for (SenseEffect.SenseType senseType : SenseEffect.SenseType.values()) {
             SENSES.put(senseType, EFFECTS.register(senseType.name().toLowerCase(Locale.ROOT) + "_vision", SenseEffect::new));

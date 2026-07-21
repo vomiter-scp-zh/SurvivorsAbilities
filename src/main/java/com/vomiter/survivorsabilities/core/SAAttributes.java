@@ -13,6 +13,33 @@ public final class SAAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES =
             DeferredRegister.create(ForgeRegistries.ATTRIBUTES, SurvivorsAbilities.MODID);
 
+    public static final RegistryObject<Attribute> ANIMAL_TRUST = ATTRIBUTES.register(
+            "animal_trust",
+            () -> new RangedAttribute(
+                    "attribute.name." + SurvivorsAbilities.MODID + ".animal_trust",
+                    0.0D, -100.0D, 100.0D
+            ).setSyncable(true)
+    );
+
+
+    public static final RegistryObject<Attribute> BLOOD_SCENT = ATTRIBUTES.register(
+            "blood_scent",
+            () -> new RangedAttribute(
+                    "attribute.name." + SurvivorsAbilities.MODID + ".blood_scent",
+                    0.0D, 0.0D, 10.0D
+            ).setSyncable(true)
+    );
+
+
+    public static final RegistryObject<Attribute> TFC_FORTUNE = ATTRIBUTES.register(
+            "tfc_fortune",
+            () -> new RangedAttribute(
+                    "attribute.name." + SurvivorsAbilities.MODID + ".tfc_fortune",
+                    0.0D, 0.0D, 10.0D
+            ).setSyncable(true)
+    );
+
+
     public static final RegistryObject<Attribute> MAX_LOAD = ATTRIBUTES.register(
             "max_load",
             () -> new RangedAttribute(
