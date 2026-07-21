@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = DairyAnimal.class, remap = false)
 public class DairyMammalMixin {
-    @WrapMethod(method = "mobInteract")
+    @WrapMethod(method = "mobInteract", remap = true)
     private InteractionResult sa$mobInteract(Player player, InteractionHand hand, Operation<InteractionResult> original){
         try{
             SAThreadLocals.cachedPlayer.set(player);
@@ -24,7 +24,7 @@ public class DairyMammalMixin {
         }
     }
 
-    @WrapOperation(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/dries007/tfc/common/entities/livestock/DairyAnimal;getFamiliarity()F"))
+    @WrapOperation(method = "mobInteract", remap = true, at = @At(value = "INVOKE", target = "Lnet/dries007/tfc/common/entities/livestock/DairyAnimal;getFamiliarity()F", remap = false))
     private float sa$getFamiliarity(DairyAnimal instance, Operation<Float> original){
         var originalResult = original.call(instance);
         return (float) (originalResult + AnimalTrustGetter.getAnimalTrust());
