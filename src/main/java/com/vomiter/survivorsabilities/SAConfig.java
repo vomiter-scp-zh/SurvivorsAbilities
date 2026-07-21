@@ -3,7 +3,6 @@ package com.vomiter.survivorsabilities;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-@EventBusSubscriber(modid = SurvivorsAbilities.MODID)
 public class SAConfig {
     public static class Common {
         public final ModConfigSpec.BooleanValue forceCancelOverburden;

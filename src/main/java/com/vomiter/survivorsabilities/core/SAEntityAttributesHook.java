@@ -22,6 +22,8 @@ public final class SAEntityAttributesHook {
         event.add(EntityType.PLAYER, SAAttributes.APPETITE);
         event.add(EntityType.PLAYER, SAAttributes.RESILIENCE);
 
-
+        event.add(EntityType.PLAYER, SAAttributes.TFC_FORTUNE);
+        event.add(EntityType.PLAYER, SAAttributes.BLOOD_SCENT);
+        event.add(EntityType.PLAYER, SAAttributes.ANIMAL_TRUST);
     }
 }

@@ -1,12 +1,10 @@
 package com.vomiter.survivorsabilities.core;
 
 import com.vomiter.survivorsabilities.SurvivorsAbilities;
-import com.vomiter.survivorsabilities.core.effect.AppetiteEffect;
-import com.vomiter.survivorsabilities.core.effect.OvereatenEffect;
-import com.vomiter.survivorsabilities.core.effect.SenseEffect;
-import com.vomiter.survivorsabilities.core.effect.WorkHorseEffect;
+import com.vomiter.survivorsabilities.core.effect.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -26,6 +24,7 @@ public class SAEffects {
     public static final DeferredHolder<MobEffect, WorkHorseEffect> WORKHORSE = EFFECTS.register("workhorse", WorkHorseEffect::new);
     public static final DeferredHolder<MobEffect, OvereatenEffect> OVEREATEN = EFFECTS.register("overeaten", OvereatenEffect::new);
     public static final DeferredHolder<MobEffect, AppetiteEffect> APPETITE = EFFECTS.register("appetite", AppetiteEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> AGITATION = EFFECTS.register("agitation", () -> new GenericEffect(MobEffectCategory.NEUTRAL, 0));
 
 
 }

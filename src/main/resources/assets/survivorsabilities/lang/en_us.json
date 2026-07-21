@@ -4,11 +4,15 @@
   "attribute.name.survivorsabilities.appetite": "Appetite",
   "attribute.name.survivorsabilities.resilience": "Self-Healing Ability",
 
+  "attribute.name.survivorsabilities.blood_scent": "Blood Scent",
+  "attribute.name.survivorsabilities.animal_trust": "Animal Trust",
+  "attribute.name.survivorsabilities.tfc_fortune": "Miner's Fortune",
   "effect.survivorsabilities.workhorse": "Workhorse",
   "effect.survivorsabilities.overeaten": "Overeaten",
   "effect.survivorsabilities.appetite": "Appetite",
 
   "effect.survivorsabilities.neptune_vision": "Vision of Neptune",
   "effect.survivorsabilities.pluto_vision": "Vision of Pluto",
-  "effect.survivorsabilities.artemis_vision": "Vision of Artemis"
+  "effect.survivorsabilities.artemis_vision": "Vision of Artemis",
+  "effect.survivorsabilities.agitation": "Agitation"
 }

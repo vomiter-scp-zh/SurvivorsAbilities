@@ -5,10 +5,16 @@
   "plugin": "com.vomiter.survivorsabilities.mixin.SAMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockDropResourceMixin",
+    "animal_trust.DairyMammalMixin",
+    "animal_trust.ProducingMammalMixin",
+    "animal_trust.ShearsItemMixin",
     "appetite.Item_AlwaysEdible",
     "appetite.NutritionDataAccessor",
     "appetite.TFCFoodData_EatMixin",
     "nourishment.TFCFoodData_Mixin",
+    "predator.PredatorAIMixin",
+    "predator.PredatorMixin",
     "workhorse.AbstractHorseAccessor",
     "workhorse.ForgeEvent_Mixin",
     "workhorse.TFCChestedHorse_Mixin"
