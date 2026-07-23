@@ -11,5 +11,6 @@
   "effect.survivorsabilities.artemis_vision": "Vision of Artemis",
   "effect.survivorsabilities.appetite": "Appetite",
   "effect.survivorsabilities.overeaten": "Overeaten",
-  "effect.survivorsabilities.agitation": "Agitation"
+  "effect.survivorsabilities.agitation": "Agitation",
+  "message.survivorsabilities.blood_scent_alert": "A predator was attracted by the blood scent."
 }
