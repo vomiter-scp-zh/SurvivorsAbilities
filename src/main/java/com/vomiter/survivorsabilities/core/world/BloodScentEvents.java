@@ -4,7 +4,9 @@ import com.vomiter.survivorsabilities.SurvivorsAbilities;
 import com.vomiter.survivorsabilities.core.SAAttributes;
 import com.vomiter.survivorsabilities.util.BloodScentCounterHelper;
 import com.vomiter.survivorsabilities.util.TFCPredatorHelper;
+import net.dries007.tfc.common.TFCTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -16,7 +18,6 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.HashSet;
@@ -51,10 +52,6 @@ public final class BloodScentEvents {
 
         float bloodScentAmp = event.getEntity().level().getCurrentDifficultyAt(event.getEntity().getOnPos()).getEffectiveDifficulty();
         int scentAmount = Mth.floor(bloodScentAttribute.getValue() * bloodScentAmp * DEBUG_AMP);
-
-        if (scentAmount <= 0) {
-            return;
-        }
 
         ServerLevel level = player.serverLevel();
         ChunkPos playerChunk = player.chunkPosition();
@@ -108,7 +105,8 @@ public final class BloodScentEvents {
             int amount
     ) {
         BloodScentCounterHelper.ifPresent(chunk, bloodScent -> {
-            bloodScent.add(amount);
+            bloodScent.reduce(level.getRandom().nextInt(5));
+            if(amount > 0) bloodScent.add(amount);
 
             if (!bloodScent.isMax()) {
                 return;
@@ -147,18 +145,26 @@ public final class BloodScentEvents {
         }
     }
 
+    private static int randomXZ(int center, RandomSource randomSource){
+        return center + randomSource.nextInt(15) - 7;
+    }
+
     private static boolean spawnPredator(
             ServerLevel level,
             ChunkPos chunkPos
     ) {
-        int blockX = chunkPos.getMiddleBlockX();
-        int blockZ = chunkPos.getMiddleBlockZ();
+        int blockX = randomXZ(chunkPos.getMiddleBlockX(), level.getRandom());
+        int blockZ = randomXZ(chunkPos.getMiddleBlockZ(), level.getRandom());
 
         int blockY = level.getHeight(
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 blockX,
                 blockZ
         );
+
+        if (!level.getBlockState(new BlockPos(blockX, blockY - 1, blockZ)).is(TFCTags.Blocks.MONSTER_SPAWNS_ON)){
+            return false;
+        }
 
         boolean hasNearByPlayer = level.hasNearbyAlivePlayer(blockX, blockY, blockZ, 32);
         if(hasNearByPlayer){
@@ -200,8 +206,10 @@ public final class BloodScentEvents {
         boolean added = level.addFreshEntity(predator);
 
         if (added) {
+            level.getPlayers(p -> p.distanceToSqr(predator) <= 128 * 128)
+                    .forEach(p -> p.displayClientMessage(Component.translatable("message.survivorsabilities.blood_scent_alert"), true));
             SurvivorsAbilities.LOGGER.info(
-                    "Spawned blood predator stand at [{}, {}, {}] in chunk [{}, {}]",
+                    "Spawned blood predator at [{}, {}, {}] in chunk [{}, {}]",
                     predator.getX(),
                     predator.getY(),
                     predator.getZ(),

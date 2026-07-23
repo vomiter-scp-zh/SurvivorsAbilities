@@ -14,5 +14,6 @@
   "effect.survivorsabilities.neptune_vision": "Vision of Neptune",
   "effect.survivorsabilities.pluto_vision": "Vision of Pluto",
   "effect.survivorsabilities.artemis_vision": "Vision of Artemis",
-  "effect.survivorsabilities.agitation": "Agitation"
+  "effect.survivorsabilities.agitation": "Agitation",
+  "message.survivorsabilities.blood_scent_alert": "A predator was attracted by the blood scent."
 }
