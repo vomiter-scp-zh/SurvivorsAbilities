@@ -28,12 +28,17 @@ public abstract class LightTexture_GammaMixin {
         if(b) return true;
         LocalPlayer player = minecraft.player;
         if(player == null) return false;
+        if(player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.PLUTO)) && player.level().dimensionType().ultraWarm()) return true;
+        if(player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.ARTEMIS))) return true;
         return player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.NEPTUNE)) && player.isEyeInFluid(FluidTags.WATER);
     }
 
     @WrapOperation(method = "updateLightTexture", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
     private float setNightVisionScale(LivingEntity player, float p_109110_, Operation<Float> original){
         if(player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.NEPTUNE)) && player.isEyeInFluid(FluidTags.WATER)) return 1;
+        if(player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.PLUTO)) && player.level().dimensionType().ultraWarm()) return 1;
+        if(player.hasEffect(SAEffects.SENSES.get(SenseEffect.SenseType.ARTEMIS)) && !player.level().dimensionType().hasFixedTime() && player.level().dayTime() % 24000 >= 13000) return 1;
+
         if(!player.hasEffect(MobEffects.NIGHT_VISION)) return 0f;
         return original.call(player, p_109110_);
     }
