@@ -13,6 +13,9 @@
     "workhorse.TFCChestedHorse_Mixin"
   ],
   "client": [
+    "sense.FogRendererMixin",
+    "sense.LevelRenderer_SenseGlowMixin",
+    "sense.LightTexture_GammaMixin"
   ],
   "injectors": {
     "defaultRequire": 1

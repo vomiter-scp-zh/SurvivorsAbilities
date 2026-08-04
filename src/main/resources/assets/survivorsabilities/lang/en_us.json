@@ -6,6 +6,9 @@
 
   "effect.survivorsabilities.workhorse": "Workhorse",
   "effect.survivorsabilities.overeaten": "Overeaten",
-  "effect.survivorsabilities.appetite": "Appetite"
+  "effect.survivorsabilities.appetite": "Appetite",
 
+  "effect.survivorsabilities.neptune_vision": "Vision of Neptune",
+  "effect.survivorsabilities.pluto_vision": "Vision of Pluto",
+  "effect.survivorsabilities.artemis_vision": "Vision of Artemis"
 }

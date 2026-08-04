@@ -1,0 +1,5 @@
+// 1.20.1	2025-11-16T16:22:32.1676936	Tags for minecraft:entity_type mod id survivorsabilities
+ce1477d44e8855c27255ebc2907dee3bad43ddaa data/survivorsabilities/tags/entity_types/highlight_in_neptune_vision.json
+bbe1713a5d5543fa81e43ce48ac8507dbb944a31 data/survivorsabilities/tags/entity_types/red_highlight_in_neptune_vision.json
+20341063285886090abea2002e19390f50b88af7 data/survivorsabilities/tags/entity_types/white_highlight_in_neptune_vision.json
+804dc553c21558f52cf7f71e3cc24545268d89d6 data/survivorsabilities/tags/entity_types/yellow_highlight_in_neptune_vision.json

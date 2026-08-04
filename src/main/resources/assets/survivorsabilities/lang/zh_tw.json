@@ -3,5 +3,8 @@
   "attribute.name.survivorsabilities.max_load": "最大負重",
   "attribute.name.survivorsabilities.resilience": "自我復原",
 
-  "effect.survivorsabilities.workhorse": "載重"
+  "effect.survivorsabilities.workhorse": "載重",
+  "effect.survivorsabilities.neptune_vision": "海皇之眼",
+  "effect.survivorsabilities.pluto_vision": "冥帝之眼",
+  "effect.survivorsabilities.artemis_vision": "獵神之眼"
 }
